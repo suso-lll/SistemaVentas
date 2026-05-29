@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using CapaPresentacion.Utilidades;
-
 using CapaEntidad;
 using CapaNegocio;
-using System.Drawing.Text;
+using CapaPresentacion.Utilidades;
+using ClosedXML.Excel;
 namespace CapaPresentacion
 {
     public partial class frmUsuarios : Form
@@ -291,6 +291,13 @@ namespace CapaPresentacion
         private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+       
+
+        private void btnexportar_Click_1(object sender, EventArgs e)
+        {
+           
         }
     }
 }
