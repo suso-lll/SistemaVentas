@@ -2,15 +2,10 @@
 using CapaNegocio;
 using CapaPresentacion.Modales;
 using CapaPresentacion.Utilidades;
-using DocumentFormat.OpenXml.Wordprocessing;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
@@ -24,6 +19,7 @@ namespace CapaPresentacion
         {
             _Usuario = oUsuario;
             InitializeComponent();
+            this.BackColor = Color.FromArgb(240, 248, 255); // Azul Alice suave
         }
 
         private void frmCompras_Load(object sender, EventArgs e)
@@ -39,8 +35,9 @@ namespace CapaPresentacion
 
             txtidproveedor.Text = "0";
             txtidproducto.Text = "0";
-        }
 
+            
+        }
         private void btnbuscarproveedor_Click(object sender, EventArgs e)
         {
             using (var modal = new mdProveedor())
@@ -320,6 +317,11 @@ namespace CapaPresentacion
             {
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
