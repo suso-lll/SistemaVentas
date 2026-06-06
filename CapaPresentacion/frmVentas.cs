@@ -163,14 +163,31 @@ namespace CapaPresentacion
         }
         private void calcularTotal()
         {
-            decimal total = 0;
-            if (dgvdata.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow fila in dgvdata.Rows)
-                    total += Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString());
+            //decimal total = 0;
+            //if (dgvdata.Rows.Count > 0)
+            //{
+            //    foreach (DataGridViewRow fila in dgvdata.Rows)
+            //        total += Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString());
 
+            //}
+            //txttotalpagar.Text = total.ToString("0.00");
+
+            ////logica para mandar los precios a otra clase de tester y no choque con el data, me envergue ya 
+            if (dgvdata.Rows.Count == 0)
+            {
+                List<decimal> subtotales = new List<decimal>();
+                foreach (DataGridViewRow fila in dgvdata.Rows)
+                {
+                    subtotales.Add(Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString()));
+                }
+
+                Tester_Logica_mat tester = new Tester_Logica_mat();
+                decimal total = tester.SumarSubtotales(subtotales);
             }
-            txttotalpagar.Text = total.ToString("0.00");
+            else
+            {
+                txttotalpagar.Text = "0.00";
+            }
         }
 
         private void limpiarproducto()
