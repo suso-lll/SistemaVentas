@@ -56,7 +56,7 @@ namespace CapaNegocio
                 Mensaje += "Es necesario el Codigo del Producto\n";
             }
 
-            if (obj.Nombre == "")
+            if (obj.Nombre != "")
             {
                 Mensaje += "Es necesario el nommbre del Producto \n";
             }
