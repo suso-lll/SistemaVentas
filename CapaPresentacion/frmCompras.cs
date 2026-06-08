@@ -162,14 +162,38 @@ namespace CapaPresentacion
         private void calcularTotal()
         {
             decimal total = 0;
+
             if (dgvdata.Rows.Count > 0)
             {
                 foreach (DataGridViewRow fila in dgvdata.Rows)
-                    total += Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString());    
-                
-            }
-            txttotalpagar.Text = total.ToString("0.00");
+                {
+                    
+                    if (fila.IsNewRow) continue;
 
+                    
+                    int cantidad = Convert.ToInt32(fila.Cells["Cantidad"].Value);
+                    decimal precio = Convert.ToDecimal(fila.Cells["Precio"].Value);
+
+                    
+                    decimal subtotalLinea = precio * cantidad;
+
+                   
+                    if (cantidad > 10)
+                    {
+                        decimal descuento = subtotalLinea * 0.15m;
+                        subtotalLinea -= descuento; 
+                    }
+
+                    
+                    fila.Cells["SubTotal"].Value = subtotalLinea.ToString("0.00");
+
+                   
+                    total += subtotalLinea;
+                }
+            }
+
+            
+            txttotalpagar.Text = total.ToString("0.00");
         }
 
         private void dgvdata_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
