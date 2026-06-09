@@ -163,31 +163,44 @@ namespace CapaPresentacion
         }
         private void calcularTotal()
         {
-            //decimal total = 0;
-            //if (dgvdata.Rows.Count > 0)
-            //{
-            //    foreach (DataGridViewRow fila in dgvdata.Rows)
-            //        total += Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString());
-
-            //}
-            //txttotalpagar.Text = total.ToString("0.00");
-
-            ////logica para mandar los precios a otra clase de tester y no choque con el data, me envergue ya 
-            if (dgvdata.Rows.Count == 0)
+            decimal total = 0;
+            int cantidad = 0;
+            if (dgvdata.Rows.Count > 0)
             {
-                List<decimal> subtotales = new List<decimal>();
+                foreach (DataGridViewRow fila in dgvdata.Rows)
+                    total += Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString());
+
                 foreach (DataGridViewRow fila in dgvdata.Rows)
                 {
-                    subtotales.Add(Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString()));
+                     cantidad += Convert.ToInt32(fila.Cells["Cantidad"].Value.ToString());
+                    
                 }
 
-                Tester_Logica_mat tester = new Tester_Logica_mat();
-                decimal total = tester.SumarSubtotales(subtotales);
             }
-            else
+            if (cantidad >= 10)
             {
-                txttotalpagar.Text = "0.00";
+                decimal descuento = total * 0.10m;
+                total = total - descuento;
             }
+
+            txttotalpagar.Text = total.ToString("0.00");
+
+            ////logica para mandar los precios a otra clase de tester y no choque con el data, me envergue ya 
+            //if (dgvdata.Rows.Count == 0)
+            //{
+            //    List<decimal> subtotales = new List<decimal>();
+            //    foreach (DataGridViewRow fila in dgvdata.Rows)
+            //    {
+            //        subtotales.Add(Convert.ToDecimal(fila.Cells["SubTotal"].Value.ToString()));
+            //    }
+
+            //    Tester_Logica_mat tester = new Tester_Logica_mat();
+            //    decimal total = tester.SumarSubtotales(subtotales);
+            //}
+            //else
+            //{
+            //    txttotalpagar.Text = "0.00";
+            //}
         }
 
         private void limpiarproducto()
@@ -398,6 +411,11 @@ namespace CapaPresentacion
             {
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

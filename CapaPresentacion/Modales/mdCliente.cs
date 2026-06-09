@@ -85,7 +85,7 @@ namespace CapaPresentacion.Modales
 
                 foreach (Cliente item in lista)
                 {
-                    if(item.Estado)
+                    if (item.Estado)
                         dgvdata.Rows.Add(new object[] { item.Documento, item.NombreCompleto });
                 }
             }
